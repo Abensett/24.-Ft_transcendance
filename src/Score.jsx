@@ -1,4 +1,4 @@
-import React from 'react'; 
+import React from 'react';
 
 
 export class Score extends React.Component {
@@ -12,3 +12,16 @@ export class Score extends React.Component {
         );
      }
     }
+
+
+export class Winner extends React.Component {
+
+      render() {
+            return (
+               <div className={this.props.position}>
+                  <h3>Player {this.props.player} WON THE GAME</h3>
+               </div>
+            );
+      }
+     }
+

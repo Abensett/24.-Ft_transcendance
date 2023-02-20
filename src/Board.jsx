@@ -2,30 +2,33 @@ import React from 'react';
 
 import {BallMove}          from './Ball.jsx'
 import {PaddleMove, PaddleMove2} from './Paddles.jsx'
-import {Score}                   from './Score.jsx'
+import {Score, Winner}                   from './Score.jsx'
 
-// rerennder the board component when the state changes
+
+// rerender the board component when the state changes
 export class   Board extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-
-            BallX: 50,
-            BallY: 50,
+            BallX: 0,
+            BallY: 0,
             BallSpeed: 8,
-            Angle: 45,
+            Angle: 0,
 
-            Paddle1Height: 50,
-            Paddle2Height: 50,
+            Paddle1Height: 44,
+            Paddle2Height: 44,
+
             Player1Score: 0,
             Player2Score: 0,
 
-            Time: 0,
+            End: null,
         };
-        this.UpdatePaddle1Height = this.UpdatePaddle1Height.bind(this);
         this.Score = this.Score.bind(this);
+        this.UpdatePaddle1Height = this.UpdatePaddle1Height.bind(this);
         this.UpdateBall = this.UpdateBall.bind(this);
+        this.GameEnd = this.GameEnd.bind(this);
+
     }
     Ref = React.createRef();
 
@@ -34,9 +37,17 @@ export class   Board extends React.Component {
     }
 
     UpdatePaddle1Height = (NewHeight) => {
+        if (NewHeight < 0)
+                NewHeight = 0;
+        else if (NewHeight > 90)
+           NewHeight = 90;
         this.setState({Paddle1Height: NewHeight})
     };
     UpdatePaddle2Height = (NewHeight) => {
+        if (NewHeight < 0)
+            NewHeight = 0;
+        else if (NewHeight > 90)
+            NewHeight = 90;
         this.setState({Paddle2Height: NewHeight})
     };
 
@@ -49,7 +60,11 @@ export class   Board extends React.Component {
             Angle: NewAngle
         })
     };
-    // {...this.state} is used to pass the state to the child component
+
+    GameEnd = () => {
+         this.setState({End: true})
+    }
+    // {...this.state} is used to pass the whole state to the child component
     // on mouse move update the state
     render() {
         return(
@@ -57,14 +72,15 @@ export class   Board extends React.Component {
                 <div className="Board">
                     <Score position="left" player="1" total={this.state.Player1Score} />
                     <Score position="right" player="2" total={this.state.Player2Score} />
+                    {/* <Winner position= "center"/> */}
+
                     {/* < Ball {...this.state} BoardRef={this.Ref}/> */}
-                    < BallMove {...this.state} UpdateBall={this.UpdateBall} Score={this.Score} BoardRef={this.Ref}/>
+
+                    < BallMove {...this.state} UpdateBall={this.UpdateBall} Score={this.Score} GameEnd={this.GameEnd} BoardRef={this.Ref}/>
+
                     < PaddleMove Paddle1={this.state.Paddle1Height} ChangePaddleHeight={this.UpdatePaddle1Height} BoardRef={this.Ref}/>
                     < PaddleMove2 Paddle2={this.state.Paddle2Height} ChangePaddle2Height={this.UpdatePaddle2Height} BoardRef={this.Ref}/>
-
                 </div>
-                {/* <h1> {this.state.Paddle1Height} test</h1> */}
-
                 <div className="Social"></div>
             </div>
 

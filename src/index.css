@@ -40,8 +40,6 @@ Display flex is used to display the board and social side by side
     height: calc(100% - 5px);
 
     background: radial-gradient(circle at 50% 120%, #81e8f6, #76deef 10%, #05610539 80%, #06274572 100%);
-    border-top: 2px solid #333;
-    border-bottom: 3px solid #333;
 
     position: relative;
     overflow: hidden;
@@ -121,4 +119,12 @@ position: absolute is used to position = relative to its parent element
     position: absolute;
     right: 50px;
     z-index: 2;
+}
+
+.center
+{
+    position: center;
+    z-index: 2;
+
+    visibility:hidden;
 }
