@@ -7,7 +7,9 @@
  * 1. Create a canvas : Ball, Paddle, Score
  * 2. Implement the game logic : status, position, score
  * 3. Implement the game loop : events = mouse move
- * 4
+ * 4 Implement the game loop : events = key press
+ * 5. paddle movements
+ * 6. ball movements
  ************************************************************************ */
 
 
@@ -84,11 +86,10 @@ visibility will be used when a point is scored
 position: absolute is used to position = relative to its parent element
 */
 
-
 .Paddle{
     height: 10%;
     width: 20px;
-    border-radius: 10px;
+    /* border-radius: 10px; */
 
     top: 50%;
     position: absolute;

@@ -34,3 +34,34 @@ export class PaddleMove extends React.Component {
     />);
   }
 }
+
+export class PaddleMove2 extends React.Component {
+
+  componentDidMount() {
+    document.addEventListener('keydown', this.handleKeyPress);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('keydown', this.handleKeyPress);
+  }
+
+  handleKeyPress = event => {
+    if (event.key === 'w' && this.props.Paddle2 > 0) {
+      if (this.props.Paddle2 )
+        this.props.ChangePaddle2Height(this.props.Paddle2 - 1);
+    }
+    if (event.key === 's' && this.props.Paddle2 < 90) {
+      this.props.ChangePaddle2Height(this.props.Paddle2 + 1);
+    }
+  };
+
+  render() {
+    return(
+    <div
+    className="Paddle Paddle2"
+    style={{
+      top: `${this.props.Paddle2}%`
+    }}
+    />);
+  }
+}
