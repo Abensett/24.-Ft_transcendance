@@ -77,15 +77,13 @@ export class BallMove extends React.Component {
         return false;
       }
 
-
-
       function CheckPaddle1Middle() {
         console.log("Border1:", Boarder1 + Paddleheight /  2 - 30 )
         console.log("Border2:",Boarder1 + Paddleheight / 2 + 30)
 
         if ((Boarder1 + Paddleheight /2 - 30 <= newY) && (newY <= Boarder1 + Paddleheight / 2 + 30 ))
           return  1;
-        else if ((Boarder1 + Paddleheight *  (1/4) <= newY) && (newY <= Boarder1 + Paddleheight *  (3/4) ))
+        else if ((Boarder1 + Paddleheight *  (1/4) <= newY) && (newY = Boarder1 + Paddleheight *  (3/4) ))
           return 2;
         else
           return 0;
@@ -101,11 +99,11 @@ export class BallMove extends React.Component {
 
       if ( CheckPaddle1() || CheckPaddle2(this.state.Width) ) {
         newX = this.props.BallX;
-         if (CheckPaddle1Middle() )
-            NewAngle = 40;
-         if (CheckPaddle2Middle() && newX > this.state.Width - 50)
-             NewAngle = 180;
-         else
+        //  if (CheckPaddle1Middle() )
+        //     NewAngle = 40;
+        //  if (CheckPaddle2Middle() && newX > this.state.Width - 50)
+        //      NewAngle = 180;
+        //  else
             NewAngle = (180 - this.props.Angle);
       }
 
@@ -123,7 +121,6 @@ export class BallMove extends React.Component {
       if ((newY < 0 || newY + 20 > this.state.Height) ) {
 
         newY = this.props.BallY;
-        // NewBallSpeedX = - this.props.BallSpeedX;
         NewAngle = (360 - this.props.Angle);
       }
 

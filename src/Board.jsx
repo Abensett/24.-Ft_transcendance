@@ -11,10 +11,10 @@ export class   Board extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            BallX: 0,
-            BallY: 0,
-            BallSpeed: 8,
-            Angle: 0,
+            BallX: 500,
+            BallY: 80,
+            BallSpeed: 5,
+            Angle: 45,
 
             Paddle1Height: 44,
             Paddle2Height: 44,
