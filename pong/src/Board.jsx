@@ -15,6 +15,7 @@ export class   Board extends React.Component {
             BallY: 50,
             BallSpeed: 5,
             Angle: 0,
+            BallSize: 15,
 
             Paddle1Height: 44,
             Paddle2Height: 44,
@@ -60,6 +61,7 @@ export class   Board extends React.Component {
             Angle: NewAngle
         })
     };
+
 
     GameEnd = () => {
          this.setState({End: true})

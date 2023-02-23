@@ -1,10 +1,5 @@
 import React from 'react';
 
-// PUBMED
-// https://pubmed.ncbi.nlm.nih.gov/29466611/
-//		https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6031472/
-//		https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8835651/ -> Parle de melatonin and uvs
-
 /******************************************
  *        Responsive  + Bounce            *
  ******************************************/
@@ -19,10 +14,14 @@ import React from 'react';
  ******************************************/
 // BOARD Check :  Position X < BoardWidth and Position Y < BoardHeight
 
-// Paddle Check : BoardHeigh / 10 * PaddleHeight / 10 = BORDER1
+// Paddle Check : BORDER1 = BoardHeigh / 10 * PaddleHeight / 10 - SIZEBALL /2
+//				  BORDER2 = BORDER1 + SizeBall
 //              we check  BORDER 1 < BallY < BORDER2 = BORDER1 + BoardHeight / 10
 
-
+/**************************************** *
+*				! Rappel !
+	NewX et NewY ne sont pas le centre
+**************************************** */
 export class BallMove extends React.Component {
 	constructor(props) {
 		super(props);
@@ -58,17 +57,19 @@ export class BallMove extends React.Component {
 			let newX = this.props.BallX + this.props.BallSpeed * Math.cos((this.props.Angle * Math.PI) / 180);
 			let newY = this.props.BallY + this.props.BallSpeed * Math.sin((this.props.Angle * Math.PI) / 180);
 			let NewAngle = this.props.Angle;
-			let NewBallSpeed = this.props.BallSpeed;
+			let NewBallSpeed = this.props.BallSpeed < 13 ? this.props.BallSpeed + 0.01 : this.props.BallSpeed;
 
-			let Boarder1 = this.state.Height / 10 * (this.props.Paddle1Height / 10 );
-			let Boarder2 = Boarder1 + this.state.Height / 10;
-			let Boarder3 = this.state.Height / 10 * (this.props.Paddle2Height / 10);
-			let Boarder4 = Boarder3 + this.state.Height / 10;
+			let Border1 = this.state.Height / 10 * (this.props.Paddle1Height / 10 ) - this.props.BallSize;
+			let Border2 = Border1 + this.state.Height / 10 + this.props.BallSize / 2;
+			let Border3 = this.state.Height / 10 * (this.props.Paddle2Height / 10) - this.props.BallSize;
+			let Border4 = Border3 + this.state.Height / 10 + this.props.BallSize / 2;
+
+
 			let Paddleheight = this.state.Height / 10;
-
+			let BallSize =  this.props.BallSize;
 			function CheckPaddle1() {
 
-			if ((Boarder1 <= newY) && (newY <= Boarder2) && (( 15 < newX ) && ( newX < 25)))
+			if ((Border1 <= newY) && (newY <= Border2) && (( 15 < newX ) && ( newX < 25)))
 				return true;
 			else
 				return false;
@@ -76,7 +77,7 @@ export class BallMove extends React.Component {
 
 			function CheckPaddle2(Width) {
 
-			if ((Boarder3 <= newY) && (newY <= Boarder4) &&  (( newX + 20 > Width - 20) && (newX + 20> Width - 25)))
+			if ((Border3 <= newY) && (newY <= Border4) &&  (( newX + 20 > Width - 20) && (newX + 20> Width - 25)))
 				return true;
 			else
 				return false;
@@ -84,57 +85,66 @@ export class BallMove extends React.Component {
 			// 20 % of the center of the paddle launches the ball straight forward
 			// 10 % of each edges of the paddle sends the ball with the same angle
 
-			function CheckPaddle1Middle() {
-				console.log("Border1:", Boarder1)
-				console.log("Border2:",Boarder2)
+			function CheckBallPosOnPad1() {
+				console.log("check paddle 1", Border1 + Paddleheight / 2 - 5, ":", Border3 + Paddleheight / 2 + 5)
 
-				if ((Boarder1 + Paddleheight /2 - Paddleheight / 10   <= newY) && (newY <= Boarder1 +  Paddleheight / 2 + Paddleheight / 10   ))
+				if ((Border1 + BallSize +Paddleheight /2 - Paddleheight / 20   <= newY) && (newY <= Border1 + BallSize +  Paddleheight / 2 + Paddleheight / 20   ))
 				{
 					console.log("middle true")
 					return  1;
 				}
-				else if ((Boarder1 + Paddleheight *  (1/10) >= newY) || (newY >= Boarder1 + Paddleheight *  (9/10) ))
+				else if ((Border1 + Paddleheight *  (2/10) >= newY))
 				{
-					console.log("angle true ",Boarder1 + Paddleheight *  (1/10),":", Boarder1 + Paddleheight *  (9/10))
 					return 2;
 				}
+				else if (newY >= Border1 + Paddleheight *  (8/10) )
+				{
+					return 3;
+				}
+				else
+					console.log("random2")
+
+					return 0;
+				}
+
+				function CheckBallPosOnPad2() {
+				 console.log("check paddle 2", Border3 + Paddleheight / 2 - 5, ":", Border3 + Paddleheight / 2 + 5)
+
+				if ((Border3 + BallSize + Paddleheight / 2 - Paddleheight / 20 <= newY) && (newY <= Border3 + BallSize + Paddleheight / 2 + Paddleheight / 20 ))
+					return 1;
+
+				else if ((Border3 + Paddleheight *  (2/10) >= newY))
+					return 2;
+				else if (newY >= Border3 + Paddleheight *  (8/10) )
+					return 3;
 				else
 					return 0;
 				}
 
-				function CheckPaddle2Middle() {
-				 console.log("check paddle 2", Boarder3 + Paddleheight / 2 - 5, ":", Boarder3 + Paddleheight / 2 + 5)
-
-				if ((Boarder3 + Paddleheight / 2 - Paddleheight / 10 <= newY) && (newY <= Boarder3 + Paddleheight / 2 + Paddleheight / 10 ))
-					return true;
-				else if ((Boarder3 + Paddleheight *  (1/10) >= newY) || (newY >= Boarder3 + Paddleheight *  (9/10) ))
-				{
-					console.log("angle true ",Boarder1 + Paddleheight *  (1/10),":", Boarder1 + Paddleheight *  (9/10))
-					return 2;
-				}
-				else
-					return false;
-				}
-
 
 			if ( CheckPaddle1() || CheckPaddle2(this.state.Width) ) {
-					newX = this.props.BallX;
-				 if (CheckPaddle1Middle()  && newX < 50 )
+  				 if (newX < 40 && CheckBallPosOnPad1() )
 				 {
-					if (CheckPaddle1Middle() == 1)
+					if (CheckBallPosOnPad1() === 1)
 						NewAngle = 0
-					else if (CheckPaddle1Middle() == 2)
-						NewAngle = NewAngle - 180
+					else if (CheckBallPosOnPad1() === 2)
+						NewAngle = 0 //-40
+					else if (CheckBallPosOnPad1() === 3)
+						NewAngle = 0 // 40
 				 }
-				 else if (CheckPaddle2Middle() && newX > this.state.Width - 50)
+				 else if (newX > this.state.Width - 50 && CheckBallPosOnPad2())
 				 {
-					if (CheckPaddle2Middle() == 1)
-					NewAngle = 180
+					if (CheckBallPosOnPad2() === 1)
+						NewAngle = 180
+					else if (CheckBallPosOnPad2() === 2)
+						NewAngle =  180 // 220
+					else if (CheckBallPosOnPad2() === 3)
+						NewAngle =  180 //130
+				}
 				else
-					NewAngle = 180 + NewAngle
-				 }
-				 else
-						NewAngle = (180 - this.props.Angle);
+					NewAngle = (180 - this.props.Angle);
+				newX = this.props.BallX;
+
 			}
 
 			if ( newX < 0 || newX + 20 > this.state.Width) {
@@ -144,6 +154,7 @@ export class BallMove extends React.Component {
 					this.props.Score(2);
 				newX = Width / 2;
 				newY = Height / 2;
+				NewBallSpeed = 5;
 				if (this.props.Player1Score >= 14 || this.props.Player2Score >= 14)
 						this.props.GameEnd();
 
@@ -170,7 +181,6 @@ export class BallMove extends React.Component {
 
 	handleKeyDown = (event) => {
 		if (event.code === 'Space') {
-			// pause or resume the ball movement
 			this.setState((prevState) => ({ isPaused: !prevState.isPaused }));
 		}
 	};
@@ -189,7 +199,9 @@ export class BallMove extends React.Component {
 					className="Ball"
 					style={{
 						left: `${this.props.BallX}px`,
-						top: `${this.props.BallY}px`
+						top: `${this.props.BallY}px`,
+						height: `${this.props.BallSize}px`,
+						width: `${this.props.BallSize}px`,
 					}}
 				/>
 			</div>
