@@ -17,10 +17,10 @@ export class PaddleMove extends React.Component {
   handleKeyPress = event => {
     if (event.key === 'ArrowUp' && this.props.Paddle1 > 0) {
       if (this.props.Paddle1)
-        this.props.ChangePaddleHeight(this.props.Paddle1 - 1);
+        this.props.ChangePaddleHeight(this.props.Paddle1 - 2);
     }
     if (event.key === 'ArrowDown' && this.props.Paddle1 < 90) {
-      this.props.ChangePaddleHeight(this.props.Paddle1 + 1);
+      this.props.ChangePaddleHeight(this.props.Paddle1 + 2);
     }
   };
 
@@ -48,10 +48,10 @@ export class PaddleMove2 extends React.Component {
   handleKeyPress = event => {
     if (event.key === 'w' && this.props.Paddle2 > 0) {
       if (this.props.Paddle2 )
-        this.props.ChangePaddle2Height(this.props.Paddle2 - 1);
+        this.props.ChangePaddle2Height(this.props.Paddle2 - 2);
     }
     if (event.key === 's' && this.props.Paddle2 < 90) {
-      this.props.ChangePaddle2Height(this.props.Paddle2 + 1);
+      this.props.ChangePaddle2Height(this.props.Paddle2 + 2);
     }
   };
 

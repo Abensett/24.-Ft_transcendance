@@ -10,15 +10,18 @@ export class   Board extends React.Component {
 
     constructor(props) {
         super(props);
+
+        this.Ref = React.createRef();
+
         this.state = {
-            BallX: 50 ,
+            BallX: 50,
             BallY: 50,
             BallSpeed: 5,
             Angle: 0,
             BallSize: 15,
 
-            Paddle1Height: 44,
-            Paddle2Height: 44,
+            Paddle1Height: 45,
+            Paddle2Height: 45,
 
             Player1Score: 0,
             Player2Score: 0,
@@ -31,7 +34,14 @@ export class   Board extends React.Component {
         this.GameEnd = this.GameEnd.bind(this);
 
     }
-    Ref = React.createRef();
+
+
+    componentDidMount = () => {
+        this.setState({
+            BallX: this.Ref.current.offsetWidth / 2,
+            BallY: this.Ref.current.offsetHeight / 2
+        })
+    }
 
     Score = (player) => {
         player === 1 ? this.setState({Player1Score: this.state.Player1Score + 1}) : this.setState({Player2Score: this.state.Player2Score + 1})
@@ -70,14 +80,13 @@ export class   Board extends React.Component {
     // on mouse move update the state
     render() {
         return(
-            <div className="FullScreen">
-                <div className="Board">
+            <div className="FullScreen" >
+                <div className="Board" ref={this.Ref}>
                     <Score position="left" player="1" total={this.state.Player1Score} />
                     <Score position="right" player="2" total={this.state.Player2Score} />
                     {/* <Winner position= "center"/> */}
 
                     {/* < Ball {...this.state} BoardRef={this.Ref}/> */}
-
                     < BallMove {...this.state} UpdateBall={this.UpdateBall} Score={this.Score} GameEnd={this.GameEnd} BoardRef={this.Ref}/>
 
                     < PaddleMove Paddle1={this.state.Paddle1Height} ChangePaddleHeight={this.UpdatePaddle1Height} BoardRef={this.Ref}/>

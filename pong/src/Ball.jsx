@@ -57,7 +57,7 @@ export class BallMove extends React.Component {
 			let newX = this.props.BallX + this.props.BallSpeed * Math.cos((this.props.Angle * Math.PI) / 180);
 			let newY = this.props.BallY + this.props.BallSpeed * Math.sin((this.props.Angle * Math.PI) / 180);
 			let NewAngle = this.props.Angle;
-			let NewBallSpeed = this.props.BallSpeed < 13 ? this.props.BallSpeed + 0.01 : this.props.BallSpeed;
+			let NewBallSpeed = this.props.BallSpeed < 10 ? this.props.BallSpeed + 0.01 : this.props.BallSpeed;
 
 			let Border1 = this.state.Height / 10 * (this.props.Paddle1Height / 10 ) - this.props.BallSize;
 			let Border2 = Border1 + this.state.Height / 10 + this.props.BallSize / 2;
@@ -89,21 +89,13 @@ export class BallMove extends React.Component {
 				console.log("check paddle 1", Border1 + Paddleheight / 2 - 5, ":", Border3 + Paddleheight / 2 + 5)
 
 				if ((Border1 + BallSize +Paddleheight /2 - Paddleheight / 20   <= newY) && (newY <= Border1 + BallSize +  Paddleheight / 2 + Paddleheight / 20   ))
-				{
-					console.log("middle true")
 					return  1;
-				}
 				else if ((Border1 + Paddleheight *  (2/10) >= newY))
-				{
 					return 2;
-				}
-				else if (newY >= Border1 + Paddleheight *  (8/10) )
-				{
-					return 3;
-				}
-				else
-					console.log("random2")
 
+				else if (newY >= Border1 + Paddleheight *  (8/10) )
+					return 3;
+				else
 					return 0;
 				}
 
@@ -128,21 +120,31 @@ export class BallMove extends React.Component {
 					if (CheckBallPosOnPad1() === 1)
 						NewAngle = 0
 					else if (CheckBallPosOnPad1() === 2)
-						NewAngle = 0 //-40
+						NewAngle = -40
 					else if (CheckBallPosOnPad1() === 3)
-						NewAngle = 0 // 40
+						NewAngle = 40
 				 }
 				 else if (newX > this.state.Width - 50 && CheckBallPosOnPad2())
 				 {
 					if (CheckBallPosOnPad2() === 1)
 						NewAngle = 180
 					else if (CheckBallPosOnPad2() === 2)
-						NewAngle =  180 // 220
+						NewAngle = 220
 					else if (CheckBallPosOnPad2() === 3)
-						NewAngle =  180 //130
+						NewAngle =  130
 				}
+				// Dans le cas ou la balle arrive perpendiculairement
 				else
-					NewAngle = (180 - this.props.Angle);
+				{
+					if (this.props.Angle === 180)
+					{
+						const nombre = Math.random() * 180;
+						console.log(nombre);
+						NewAngle = (180 - nombre);
+					}
+					else
+						NewAngle = (180 - this.props.Angle);
+				}
 				newX = this.props.BallX;
 
 			}
