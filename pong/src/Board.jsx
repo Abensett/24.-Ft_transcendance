@@ -65,10 +65,10 @@ export class   Board extends React.Component {
     UpdateBall = (NewBallX, NewBallY, NewBallSpeed, NewAngle) => {
         this.setState(
             {
-            BallX: NewBallX,
-            BallY: NewBallY,
-            BallSpeed : NewBallSpeed,
-            Angle: NewAngle
+            BallX:          NewBallX,
+            BallY:          NewBallY,
+            BallSpeed :     NewBallSpeed,
+            Angle:          NewAngle
         })
     };
 
@@ -88,7 +88,7 @@ export class   Board extends React.Component {
 
                     {/* < Ball {...this.state} BoardRef={this.Ref}/> */}
                     < BallMove {...this.state} UpdateBall={this.UpdateBall} Score={this.Score} GameEnd={this.GameEnd} BoardRef={this.Ref}/>
-
+                    {/* <div className="Ball"> */}
                     < PaddleMove Paddle1={this.state.Paddle1Height} ChangePaddleHeight={this.UpdatePaddle1Height} BoardRef={this.Ref}/>
                     < PaddleMove2 Paddle2={this.state.Paddle2Height} ChangePaddle2Height={this.UpdatePaddle2Height} BoardRef={this.Ref}/>
                 </div>

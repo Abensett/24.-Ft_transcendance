@@ -21,6 +21,8 @@ import React from 'react';
 /**************************************** *
 *				! Rappel !
 	NewX et NewY ne sont pas le centre
+
+	TO DO -> ADD MARGIN OF BALL SIZE AND CHANGE CONDITIONSs
 **************************************** */
 export class BallMove extends React.Component {
 	constructor(props) {

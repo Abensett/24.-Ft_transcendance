@@ -70,8 +70,8 @@ visibility will be used when a point is scored
     background: radial-gradient(circle at 50% 120%, #81e8f6, #5ba7b3 10%, #055194 80%, #062745 100%);
     /* transform: rotate(0) translateY(-6.5em); */
 
-    top: 50%;
-    left: 50%;
+    top: 0px;
+    left: 0px;
 
     position: absolute;
 
