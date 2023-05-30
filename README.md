@@ -9,7 +9,6 @@
   * [User](#User)
   * [Chat](#Chat)
   * [Game](#Game)
-* [Ressources](#Ressources)
 
 ## Goal
 This project is about creating a website for the mighty Pong contest!
@@ -62,5 +61,3 @@ it or `remove` it.
  
 
 ## 42 Project 100/100
-
-## Ressources 
