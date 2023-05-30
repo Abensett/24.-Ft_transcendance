@@ -58,5 +58,6 @@ it or `remove` it.
 • Power-ups.  
 • Must be `responsive`!  
  
+This project was done with [Charles M.](https://github.com/cmariot/) and [Francesco L.](https://github.com/KLM687)  
 
 ## 42 Project 100/100
