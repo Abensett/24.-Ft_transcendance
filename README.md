@@ -1,5 +1,4 @@
-### ft_transcendence
-# 22.-Inception
+# 24.-Ft_transcendence
 
 ## Table of contents
 * [Goal](#Goal)  
