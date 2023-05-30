@@ -31,7 +31,7 @@ This project is about creating a website for the mighty Pong contest!
 ### Security
 • Any password stored in the database must be `hashed`.  
 • Must be `protected against SQL injections`.  
-•  `server-side validation` for `forms` and any `userinput`.  
+•  `Server-side validation` for `forms` and any `userinput`.  
 
 ### User
 • User must login using the `OAuth system of 42 intranet`.  
