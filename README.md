@@ -34,7 +34,7 @@ This project is about creating a website for the mighty Pong contest!
 • Must be `protected against SQL injections`.  
 •  `server-side validation` for `forms` and any `userinput`.  
 
-### User Account
+### User
 • User must login using the `OAuth system of 42 intranet`.  
 • Name must be `unique` and displayed. 
 • User should be able to `upload an avatar` otherwise `default`.  
