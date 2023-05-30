@@ -29,7 +29,7 @@ This project is about creating a website for the mighty Pong contest!
 • Everything has to be launch by a single call to: `docker-compose up --build`
 
 ### Security
-• Any password stored in your database must be `hashed`.  
+• Any password stored in the database must be `hashed`.  
 • Must be `protected against SQL injections`.  
 •  `server-side validation` for `forms` and any `userinput`.  
 
