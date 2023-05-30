@@ -6,7 +6,7 @@
 * [Requirements](#Requirements)
   * [Main](#main)
   * [Security](#Security)
-  * [User](#User Account)
+  * [User](#User)
   * [Chat](#Chat)
   * [Game](#Game)
 * [Ressources](#Ressources)
