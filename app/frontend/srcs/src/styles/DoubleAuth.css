@@ -1,0 +1,66 @@
+#validation-2fa-section {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    height: -webkit-fill-available;
+    height: -moz-available;
+    grid-gap: 10px;
+    margin: 10px;
+}
+
+#validation-2fa-aside,
+#validation-2fa-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#div-2fa-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#validation-2fa-form {
+    border: 3px solid #737373;
+    border-radius: 15px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    background: rgb(16, 16, 16);
+    background: -moz-linear-gradient(
+        180deg,
+        rgba(16, 16, 16, 1) 0%,
+        rgba(30, 30, 30, 1) 40%,
+        rgba(30, 30, 30, 1) 60%,
+        rgba(16, 16, 16, 1) 100%
+    );
+    background: -webkit-linear-gradient(
+        180deg,
+        rgba(16, 16, 16, 1) 0%,
+        rgba(30, 30, 30, 1) 40%,
+        rgba(30, 30, 30, 1) 60%,
+        rgba(16, 16, 16, 1) 100%
+    );
+    background: linear-gradient(
+        180deg,
+        rgba(16, 16, 16, 1) 0%,
+        rgba(30, 30, 30, 1) 40%,
+        rgba(30, 30, 30, 1) 60%,
+        rgba(16, 16, 16, 1) 100%
+    );
+    height: fit-content;
+    padding: 10px;
+}
+
+#register-form * {
+    margin: 5px;
+    padding: 5px;
+}
+
+#form-2fa-choices * {
+    margin-inline: 5px;
+}
+
+#validation-2fa-aside {
+    color: #1e1e1e;
+}

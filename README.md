@@ -1,13 +1,3 @@
-# Template
+### ft_transcendence
 
-## Table of contents
-* [Part 1](#Part)  
-* [Part 2](#Reinterpretation-types)  
-
-### Part
->  Little explanation
-```C
-int main (void)
-{
-}
-```
+[![CodeQL](https://github.com/cmariot/ft_transcendence/actions/workflows/github-code-scanning/codeql/badge.svg?branch=main)](https://github.com/cmariot/ft_transcendence/actions/workflows/github-code-scanning/codeql)

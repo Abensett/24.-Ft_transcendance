@@ -1,0 +1,137 @@
+#div-profile {
+    height: 100%;
+    max-height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#profile {
+    display: flex;
+    flex-direction: row;
+    gap: 10%;
+    justify-content: center;
+    align-items: center;
+    height: fit-content;
+    max-height: 100%;
+    width: fit-content;
+    border-radius: 15px;
+    background: rgb(16, 16, 16);
+    background: -moz-linear-gradient(
+        180deg,
+        rgba(16, 16, 16, 1) 0%,
+        rgba(30, 30, 30, 1) 40%,
+        rgba(30, 30, 30, 1) 60%,
+        rgba(16, 16, 16, 1) 100%
+    );
+    background: -webkit-linear-gradient(
+        180deg,
+        rgba(16, 16, 16, 1) 0%,
+        rgba(30, 30, 30, 1) 40%,
+        rgba(30, 30, 30, 1) 60%,
+        rgba(16, 16, 16, 1) 100%
+    );
+    background: linear-gradient(
+        180deg,
+        rgba(16, 16, 16, 1) 0%,
+        rgba(30, 30, 30, 1) 40%,
+        rgba(30, 30, 30, 1) 60%,
+        rgba(16, 16, 16, 1) 100%
+    );
+    border: 3px solid #737373;
+    margin: auto;
+    padding: 20px;
+    height: 80%;
+}
+
+#profile-user-picture {
+    max-height: 150px;
+    max-width: 150px;
+    clip-path: circle();
+}
+
+li.match-results:nth-child(2) {
+    list-style-type: none;
+}
+
+.match-results {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    background-color: #a3a3a3;
+    color: #1e1e1e;
+    border: 3px #737373 solid;
+    border-radius: 15px;
+    justify-content: center;
+    align-content: center;
+}
+
+#games-list {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 20px;
+}
+
+.vs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.match-results {
+    justify-content: space-around;
+    width: 100%;
+}
+
+.winner {
+    width: 40%;
+}
+
+#stats {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-inline: 40px;
+    width: 300px;
+    max-height: 100%;
+    overflow: auto;
+    height: 100%;
+    max-height: 100%;
+}
+
+#profile > div:nth-child(1) {
+    height: 100%;
+    overflow: auto;
+    width: 300px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding-inline: 40px;
+    justify-content: flex-start;
+}
+
+#game-stats {
+    padding-inline: 10px;
+    background-color: #a3a3a3;
+    color: #1e1e1e;
+    border-radius: 15px;
+    margin-block: 20px;
+    border: 3px #737373 solid;
+}
+#profile > div:nth-child(1) {
+    height: fit-content;
+    overflow: auto;
+    width: 300px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding-inline: 40px;
+    justify-content: flex-start;
+}

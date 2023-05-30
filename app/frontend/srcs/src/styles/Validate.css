@@ -1,0 +1,64 @@
+#validation-section {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    height: -webkit-fill-available;
+    height: -moz-available;
+    grid-gap: 10px;
+    padding: 10px;
+}
+
+#validation-aside,
+#validation-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#validation-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    background: rgb(16, 16, 16);
+    background: -moz-linear-gradient(
+        180deg,
+        rgba(16, 16, 16, 1) 0%,
+        rgba(30, 30, 30, 1) 40%,
+        rgba(30, 30, 30, 1) 60%,
+        rgba(16, 16, 16, 1) 100%
+    );
+    background: -webkit-linear-gradient(
+        180deg,
+        rgba(16, 16, 16, 1) 0%,
+        rgba(30, 30, 30, 1) 40%,
+        rgba(30, 30, 30, 1) 60%,
+        rgba(16, 16, 16, 1) 100%
+    );
+    background: linear-gradient(
+        180deg,
+        rgba(16, 16, 16, 1) 0%,
+        rgba(30, 30, 30, 1) 40%,
+        rgba(30, 30, 30, 1) 60%,
+        rgba(16, 16, 16, 1) 100%
+    );
+    border: 3px solid #737373;
+    height: fit-content;
+    align-self: center;
+}
+
+#validation-form * {
+    margin: 5px;
+    padding: 5px;
+}
+
+#form-validation-choices * {
+    margin-inline: 5px;
+}
+
+#validation-aside {
+    color: #1e1e1e;
+}

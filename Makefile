@@ -1,81 +1,98 @@
-
 # **************************************************************************** #
-#                               COLORS / DESIGN	                               #
-# **************************************************************************** #
-
-GREEN		= \033[32;1m
-RED		= \033[31;1m
-YELLOW		= \033[33;1m
-CYAN		= \033[36;1m
-RESET		= \033[0m
-WHITE 		= \033[0;m
-
-CLEAR		= \033[2K\r
-# **************************************************************************** #
-#                          PROJECT'S DIRECTORIES                               #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2022/08/31 16:08:49 by cmariot           #+#    #+#              #
+#    Updated: 2023/04/07 15:42:04 by cmariot          ###   ########.fr        #
+#                                                                              #
 # **************************************************************************** #
 
-NAME			= executable
+up:
+	docker-compose up --build
 
-DIRSRC			= src/
+configure:
+	./configure.sh
 
-DIROBJ			= objs/
+build:
+	docker-compose build
 
-# **************************************************************************** #
-#                         COMPILATION AND LINK FLAGS                           #
-# **************************************************************************** #
+launch:
+	docker-compose up
 
-CC				= c++
+detach:
+	docker-compose up --detach --build
 
-CFLAGS 			= -Wall -Wextra -Werror -std=c++98 -g
+clean: stop
+	docker system prune -a --force
 
-INCLUDES 		= -I ./includes
+fclean: stop
+	docker system prune -a --force --volumes
 
-LDFLAGS			=
+re: fclean up
 
+sh_backend:
+	docker-compose exec backend sh
 
-# **************************************************************************** #
-#                                SOURCE FILES                                  #
-# **************************************************************************** #
+log_backend:
+	docker-compose logs --follow backend
 
-SRC 			= main.cpp
+top_backend:
+	docker top backend
 
-OBJ 			:= $(SRC:.cpp=.o)
+sh_database:
+	docker-compose exec database sh
 
-SRC			= $(addprefix $(DIRSRC), $(SRC))
+log_database:
+	docker-compose logs --follow database
 
-DIROBJS			= $(addprefix $(DIROBJ), $(OBJ))
+top_database:
+	docker top database
 
-# **************************************************************************** #
-#                             MAKEFILE'S RULES                                 #
-# **************************************************************************** #
+sh_frontend:
+	docker-compose exec frontend sh
 
+log_frontend:
+	docker-compose logs --follow frontend
 
-all: 			$(NAME)
+top_frontend:
+	docker top frontend
 
-leaks:			all
-				valgrind --leak-check=full --show-leak-kinds=all --track-fds=yes --track-origins=yes ./${NAME}
+sh_reverse_proxy:
+	docker-compose exec reverse_proxy sh
 
+sh_pgadmin:
+	docker-compose exec pgadmin sh
 
+ps:
+	docker-compose ps
 
-$(DIROBJ)%.o:${DIRSRC}%.cpp
-				@mkdir -p $(DIROBJ)
-				@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+list:
+	@printf "CONTAINERS LIST :\n"
+	@docker container ls
+	@printf "\nIMAGES LIST :\n"
+	@docker image ls
+	@printf "\nVOLUMES LIST :\n"
+	@docker volume ls
+	@printf "\nNETWORKS LIST :\n"
+	@docker network ls
 
-$(NAME):		$(DIROBJS)
-				@printf "  $(YELLOW)Compiling and linking all the files $(END)⌛\n"
-				@$(CC) $(INCLUDES)  $(CFLAGS) $(DIROBJS)  $(LDFLAGS) -o $@
-				@printf "[$(GREEN)OK$(WHITE)] $(NAME) generated. \n"
+image:
+	docker-compose images
 
-clean:
-				@rm -rf $(OBJS)	$(DIROBJ)
-				@printf "[$(GREEN)cleaned$(WHITE)] .o FILES \n"
+pause:
+	docker-compose pause
 
-fclean:			clean
-				@rm -rf $(NAME)
-				@printf "[$(GREEN)cleaned$(WHITE)] $(NAME) \n\n"
+unpause:
+	docker-compose unpause
 
-re:				fclean all
+start:
+	docker-compose start
 
-.PHONY: 		all clean fclean re
+stop:
+	docker-compose stop
 
+restart:
+	docker-compose restart

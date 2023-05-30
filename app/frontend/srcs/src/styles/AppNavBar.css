@@ -1,0 +1,208 @@
+#app-header,
+#auth-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    display: flex;
+    width: 100vw;
+    height: 70px;
+    align-items: center;
+    justify-content: center;
+    background: rgb(16, 16, 16);
+    background: -moz-linear-gradient(
+        180deg,
+        rgba(16, 16, 16, 1) 0%,
+        rgba(30, 30, 30, 1) 40%,
+        rgba(30, 30, 30, 1) 60%,
+        rgba(16, 16, 16, 1) 100%
+    );
+    background: -webkit-linear-gradient(
+        180deg,
+        rgba(16, 16, 16, 1) 0%,
+        rgba(30, 30, 30, 1) 40%,
+        rgba(30, 30, 30, 1) 60%,
+        rgba(16, 16, 16, 1) 100%
+    );
+    background: linear-gradient(
+        180deg,
+        rgba(16, 16, 16, 1) 0%,
+        rgba(30, 30, 30, 1) 40%,
+        rgba(30, 30, 30, 1) 60%,
+        rgba(16, 16, 16, 1) 100%
+    );
+    border-bottom: 0.5px #a7a7a7 dotted;
+}
+
+#app-nav,
+#auth-nav {
+    display: flex;
+    width: 100%;
+    max-width: 1200px;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+    padding: 10px;
+}
+
+#nav-user-infos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#nav-user-picture {
+    max-height: 50px;
+    max-width: 50px;
+    clip-path: circle();
+    margin-inline-start: 10px;
+    height: 35px;
+}
+
+#nav-left {
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+#nav-logo {
+    height: 35px;
+    padding: 10px;
+    max-height: 50px;
+    max-width: 50px;
+    padding-left: 0;
+}
+
+a {
+    display: block;
+    text-decoration: underline;
+    text-decoration-style: dotted;
+}
+
+#app-menu {
+    position: fixed;
+    right: 0px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    z-index: 0;
+    width: 100%;
+    background-color: #0000;
+    background: rgb(16, 16, 16);
+    background: -moz-linear-gradient(
+        180deg,
+        rgba(16, 16, 16, 1) 0%,
+        rgba(30, 30, 30, 1) 40%,
+        rgba(30, 30, 30, 1) 60%,
+        rgba(16, 16, 16, 1) 100%
+    );
+    background: -webkit-linear-gradient(
+        180deg,
+        rgba(16, 16, 16, 1) 0%,
+        rgba(30, 30, 30, 1) 40%,
+        rgba(30, 30, 30, 1) 60%,
+        rgba(16, 16, 16, 1) 100%
+    );
+    background: linear-gradient(
+        180deg,
+        rgba(16, 16, 16, 1) 0%,
+        rgba(30, 30, 30, 1) 40%,
+        rgba(30, 30, 30, 1) 60%,
+        rgba(16, 16, 16, 1) 100%
+    );
+    align-items: center;
+    max-width: 100vw;
+    border-block: 0.5px #a7a7a7 dotted;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding-block: 20px;
+}
+
+.defaultMenuPos {
+    top: 0px;
+}
+
+.slidein {
+    top: 0px;
+    animation: 0.7s slidein;
+}
+
+@keyframes slidein {
+    from {
+        top: 70px;
+    }
+
+    to {
+        top: 0px;
+    }
+}
+
+.slideout {
+    top: 70px;
+    animation: 0.7s slideout;
+}
+
+@keyframes slideout {
+    from {
+        top: 0px;
+    }
+
+    to {
+        top: 70px;
+    }
+}
+
+.app-menu-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.app-menu-icon {
+    height: 20px;
+    width: auto;
+}
+
+#app-nav-notif {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    gap: 5px;
+    padding-inline: 20px;
+}
+
+#notif-icon {
+    height: 20px;
+    width: auto;
+}
+
+#app-nav-home,
+#auth-nav-home {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+}
+
+#home-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media screen and (max-width: 480px) {
+    .app-menu-icon {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 372px) {
+    #home-text,
+    #nav-username {
+        display: none;
+    }
+}

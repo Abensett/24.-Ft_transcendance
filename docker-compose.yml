@@ -1,0 +1,67 @@
+version: "3.9"
+
+services:
+    database:
+        container_name: "database"
+        image: postgres:alpine
+        env_file: app/database/.env
+        networks:
+            - network
+        restart: unless-stopped
+
+    pgadmin:
+        container_name: "pgadmin"
+        image: dpage/pgadmin4
+        env_file: app/pgadmin/.env
+        networks:
+            - network
+        ports:
+            - "5050:5000"
+        depends_on:
+            - "database"
+        restart: unless-stopped
+
+    backend:
+        container_name: "backend"
+        build: app/backend/
+        env_file: app/backend/.env
+        volumes:
+            - ./app/backend/srcs:/srcs
+        networks:
+            - network
+        expose:
+            - 3000
+            - 3001
+        depends_on:
+            - "database"
+        restart: unless-stopped
+
+    frontend:
+        container_name: "frontend"
+        build: app/frontend/
+        env_file: app/frontend/.env
+        volumes:
+            - ./app/frontend/srcs:/development
+        networks:
+            - network
+        expose:
+            - 4000
+        depends_on:
+            - "database"
+            - "backend"
+        restart: unless-stopped
+
+    reverse_proxy:
+        container_name: reverse_proxy
+        build: app/reverse_proxy/
+        networks:
+            - network
+        depends_on:
+            - "frontend"
+            - "backend"
+        ports:
+            - "8443:8443"
+        restart: unless-stopped
+
+networks:
+    network: {}
