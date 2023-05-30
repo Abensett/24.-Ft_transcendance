@@ -57,7 +57,7 @@ it or `remove` it.
 ### Game
 • Play a live Pong game versus another player.  
 • `Matchmaking` system.  
-• Power-ups. 
+• Power-ups.  
 • Must be `responsive`!  
  
 
